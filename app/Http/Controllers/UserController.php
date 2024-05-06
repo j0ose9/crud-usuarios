@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use resources\views\layouts\create;
 
 class UserController extends Controller
 {
@@ -12,7 +14,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('index');
+      $users = User::latest()->get();
+        return view('index', ['users'=> $users]);
     }
 
     /**
@@ -20,15 +23,21 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+      return view('create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
-        //
+      $request->validate([
+        'nombre' => 'required',
+        'email' => 'required',
+        'password' => 'required',
+      ]);
+      User::create($request->all());
+      return redirect()-> route('users.index')->with('success', 'Su nuevo usuario ha sido registrado correctamente');
     }
 
     /**
