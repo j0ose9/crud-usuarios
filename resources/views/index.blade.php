@@ -14,7 +14,7 @@
       <h2 class="text-white mt-3">CRUD de Usuarios</h2>
     </div>
     <div>
-      <a href="" class="btn btn-primary mt-3">Crear Usuario</a>
+      <a href="{{route('users.create')}}" class="btn btn-primary mt-3">Crear Usuario</a>
     </div>
   </div>
   <div class="col-12 mt-5">
@@ -34,8 +34,10 @@
           {{$user->password}}
         </td>
         <td>
-          <a href="" class="btn btn-warning">Editar</a>
-          <form action="" method="post" class="d-inline">
+          <a href="{{route('users.edit', $user)}}" class="btn btn-warning">Editar</a>
+          <form action="{{route('users.destroy', $user)}}" method="post" class="d-inline">
+            @csrf
+            @method('DELETE')
             <button type="submit" class="btn btn-danger">Eliminar</button>
           </form>
         </td>
