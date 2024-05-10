@@ -32,9 +32,9 @@ class UserController extends Controller
   public function store(Request $request): RedirectResponse
   {
     $request->validate([
-      'nombre' => 'required',
+      'nombre' => 'required|min:3|max:255',
       'email' => 'required',
-      'password' => 'required',
+      'password' => 'required|min:8|max:32',
     ]);
     User::create($request->all());
     return redirect()-> route('users.index')->with('success', 'Su nuevo usuario ha sido registrado correctamente');
@@ -62,9 +62,9 @@ class UserController extends Controller
   public function update(Request $request, User $user)
   {
     $request->validate([
-      'nombre' => 'required',
+      'nombre' => 'required|min:3|max:255',
       'email' => 'required',
-      'password' => 'required',
+      'password' => 'required|min:8|max:32',
     ]);
 
     $user->update($request->all());
@@ -77,6 +77,6 @@ class UserController extends Controller
   public function destroy(User $user)
   {
     $user->delete();
-    return redirect()-> route('users.index')->with('success', 'Su nuevo usuario ha sido eliminado correctamente');
+    return redirect()-> route('users.index')->with('success', 'Su usuario ha sido eliminado correctamente');
   }
 }
