@@ -3,12 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use resources\views\layouts\create;
 
 class UserController extends Controller
 {
+<<<<<<< HEAD
   /**
    * Display a listing of the resource.
    */
@@ -39,6 +38,31 @@ class UserController extends Controller
     User::create($request->all());
     return redirect()-> route('users.index')->with('success', 'Su nuevo usuario ha sido registrado correctamente');
   }
+=======
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+        return view('index');
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        //
+    }
+>>>>>>> parent of b3ff035 (añadido Create y Read)
 
   /**
    * Display the specified resource.
