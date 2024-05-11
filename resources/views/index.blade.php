@@ -2,7 +2,6 @@
 @extends('layouts.navbar')
 
 @section('content')
-<<<<<<< HEAD
 @if(Session::get('success'))
 <div class="alert alert-success">
   <p>{{ Session::get('success') }}</p><br><br>
@@ -45,12 +44,7 @@
       @endforeach
     </table>
   </div>
-=======
-<div>
-  <h1>Prueba content</h1>
 
->>>>>>> parent of b3ff035 (añadido Create y Read)
-</div>
 
 
 @endsection
