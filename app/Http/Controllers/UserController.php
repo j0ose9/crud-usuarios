@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -22,6 +23,15 @@ class UserController extends Controller
   public function create()
   {
     return view('create');
+  }
+  public function login()
+  {
+    $credentials = request()->only('email', 'password');
+    if (Auth::attempt($credentials)){
+      request()->session()->regenerate();
+      return redirect('index');
+    }
+    return redirect('login');
   }
 
   /**
@@ -43,7 +53,8 @@ class UserController extends Controller
    */
   public function show(User $user)
   {
-      //
+    $users = User::latest()->get();
+    return view('index', ['users'=> $users]);
   }
 
   /**
@@ -77,4 +88,5 @@ class UserController extends Controller
     $user->delete();
     return redirect()-> route('users.index')->with('success', 'Su usuario ha sido eliminado correctamente');
   }
+
 }
