@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +21,13 @@ Route::get('/', function () {
 });
 
 Route::resource('users', UserController::class);
+Route::view('login', 'login')->name('login');
+Route::view('register', [UserController::class,'create']);
+Route::post('login', function(){
+  $credentials = request()->only('email', 'password');
+  if (Auth::attempt($credentials)){
+    request()->session()->regenerate();
+    return redirect('users.index');
+  }
+  return redirect('login');
+});

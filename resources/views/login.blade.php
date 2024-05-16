@@ -23,7 +23,7 @@
 </div>
 @endif
 
-  <form action="" method="POST">
+  <form action="/login" method="POST">
     @csrf
       <div class="col-xs-12 col-sm-12 col-md-12 mt-2">
         <div class="form-group">
@@ -38,7 +38,7 @@
         </div>
       </div>
       <div class="col-xs-12 col-sm-12 col-md-12 text-center mt-2">
-        <button type="submit" class="btn btn-primary">Crear</button>
+        <button type="submit" class="btn btn-primary">Login</button>
       </div>
     </div>
   </form>

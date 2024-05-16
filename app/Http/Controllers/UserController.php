@@ -24,15 +24,6 @@ class UserController extends Controller
   {
     return view('create');
   }
-  public function login()
-  {
-    $credentials = request()->only('email', 'password');
-    if (Auth::attempt($credentials)){
-      request()->session()->regenerate();
-      return redirect('index');
-    }
-    return redirect('login');
-  }
 
   /**
    * Store a newly created resource in storage.
