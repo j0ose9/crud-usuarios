@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -34,8 +35,13 @@ class UserController extends Controller
       'nombre' => 'required|min:3|max:255',
       'email' => 'required',
       'password' => 'required|min:8|max:32',
+      'username' => 'required|min:4',
     ]);
-    User::create($request->all());
+    User::create([
+      'name' => $request->name,
+      'email' => $request->email,
+      'password' => Hash::make($request->password),
+  ]);
     return redirect()-> route('users.index')->with('success', 'Su nuevo usuario ha sido registrado correctamente');
   }
 
@@ -65,6 +71,7 @@ class UserController extends Controller
       'nombre' => 'required|min:3|max:255',
       'email' => 'required',
       'password' => 'required|min:8|max:32',
+      'username' => 'required|min:4',
     ]);
 
     $user->update($request->all());

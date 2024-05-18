@@ -1,9 +1,15 @@
-@extends('layouts.base')
-@extends('layouts.navbar')
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Dashboard') }}
+        </h2>
+    </x-slot>
 
-@section('content')
-
-<div class="row">
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900">
+                <div class="row">
   <div class="col-12">
     <div>
       <h2>Crear Usuario</h2>
@@ -26,10 +32,11 @@
   <form action="{{route('users.store')}}" method="POST">
     @csrf
     <div class="row">
+
       <div class="col-xs-12 col-sm-12 col-md-12 mt-2">
         <div class="form-group">
           <strong>Usuario:</strong>
-          <input type="text" name="nombre" class="form-control" placeholder="Nombre de usuario" >
+          <input type="text" name="name" class="form-control" placeholder="Nombre" >
         </div>
       </div>
       <div class="col-xs-12 col-sm-12 col-md-12 mt-2">
@@ -50,5 +57,8 @@
     </div>
   </form>
 </div>
-@endsection
-
+                </div>
+            </div>
+        </div>
+    </div>
+</x-app-layout>
